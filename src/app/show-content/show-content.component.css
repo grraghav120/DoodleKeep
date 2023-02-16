@@ -1,0 +1,42 @@
+.example-card {
+  position: relative;
+  max-width: 300px;
+  border: 1px solid black;
+  margin-top: 10px;
+  border-radius: 15px;
+}
+
+.cardTitle {
+  background-color: rgba(159, 156, 156, 0.138);
+  border-bottom: 1px solid black;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.cardsTitle{
+    font-size: 15px;
+}
+
+.cardContent {
+  margin-top: 5px;
+}
+
+.cardContent p{
+    font-size: 20px;
+    justify-content:flex-start;
+  }
+.noData{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.deletebtn{
+    margin-left: 30px;
+}
+
+.sniper{
+    display: flex;
+    justify-content: center;
+    margin-top: 150px;
+}

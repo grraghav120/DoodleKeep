@@ -1,0 +1,43 @@
+<div *ngIf="isLoading" class="sniper">
+    <mat-spinner [diameter]="50"></mat-spinner>
+</div>
+<div *ngIf="cardShow.length === 0 && !isLoading" class="noData">
+  <p>No Data Available</p>
+</div>
+<div *ngIf="!isLoading">
+  <div
+    *ngFor="let card of cardShow"
+    class="col-xs-12 col-md-3 col-sm-6"
+    style="margin-bottom: 20px"
+  >
+    <mat-card class="example-card">
+      <mat-card-header class="cardTitle">
+        <div>
+          <mat-card-title class="cardsTitle">{{ card.title }}</mat-card-title>
+        </div>
+        <hr />
+      </mat-card-header>
+      <mat-card-content class="cardContent">
+        <p>{{ card.content }}</p>
+        <hr>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-stroked-button matTootip="priority" [color]=getColor(card.priority)>
+          {{ card.priority }}
+        </button>
+        <div>
+          <button
+            mat-mini-fab
+            matTooltip="delete"
+            color="warn"
+            (click)="onDeleteTask(card.id)"
+            aria-label="Example icon button with a delete icon"
+            class="deletebtn"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
