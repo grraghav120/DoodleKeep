@@ -37,7 +37,12 @@ export class ShowContentComponent implements OnInit {
       } else {
         console.log('Error in Fetch API');
       }
-    });
+    },
+    error=>{
+      console.log(error);
+      
+    }
+    );
   }
 
   onDeleteTask(id: string) {

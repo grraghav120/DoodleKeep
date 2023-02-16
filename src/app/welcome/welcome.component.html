@@ -7,9 +7,9 @@
   </header>
 </div>
 <div class="wels"><h1>Welcome</h1></div>
-<div class="intro" *ngIf="!isLoging"><p>Already have an Account? <a (click)="onLogin()">Login Now</a></p></div>
+<div class="intro" *ngIf="!isLoging"><p>Already have an Account? <a (click)="onSwitch()">Login Now</a></p></div>
 <div class="intro" *ngIf="!isLoging"><p style="font-size: 15px;">Create an Account</p></div>
-<div class="intro" *ngIf="isLoging"><p>Create an Account? <a (click)="onLogin()">Sign Up</a></p></div>
+<div class="intro" *ngIf="isLoging"><p>New User? <a (click)="onSwitch()">Sign Up</a></p></div>
 <div class="wels">
   <form class="example-form" [formGroup]="welcomeForm">
     <div>

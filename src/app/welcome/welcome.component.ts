@@ -29,6 +29,14 @@ export class WelcomeComponent implements OnInit {
 
   onWelcome() {
     if (this.isLoging) {
+      this.auth.onLogin(this.welcomeForm.value).subscribe(()=>{
+        this.route.navigate(['notes']);
+      },error=>{
+        this.msg = error.error.error.message;
+          console.log(error.error.error.message);
+          this.openSnackBar(this.msg, 'X');
+      }
+      )
     } else {
       this.auth.onSignUp(this.welcomeForm.value).subscribe(
         (res: any) => {
@@ -42,13 +50,13 @@ export class WelcomeComponent implements OnInit {
           this.openSnackBar(this.msg, 'X');
         }
       );
-      this.welcomeForm.reset();
     }
   }
   openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action);
+    this._snackBar.open(message, action),{duration:1};
   }
-  onLogin() {
+
+  onSwitch() {
     this.isLoging = !this.isLoging;
   }
 }

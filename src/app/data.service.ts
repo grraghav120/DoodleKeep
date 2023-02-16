@@ -14,7 +14,7 @@ export class DataService {
   }
 
   onFetchData(){
-    return this.http.get('https://ng-angular-project-1adbc-default-rtdb.firebaseio.com/'+this.welcomeId+'.json');
+    return this.http.get('https://ng-angular-project-1adbc-default-rtdb.firebaseio.com/notes.json');
   }
 
   onDeleteTask(id:string){
