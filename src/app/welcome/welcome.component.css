@@ -23,18 +23,31 @@ h1 {
 	font-size: 40px;
 }
 
-h3, p {
+h3{
 	font-family: 'Open Sans', sans-serif;
 	margin-bottom: 20px;
     color: white;
 }
 
 .wels{
-    margin-top: 30px;
+    margin-top: 10px;
     display: flex;
     justify-content: center;
 }
 
 .wels h1{
-    margin-top: 50px;
+    margin-top: 10px;
+}
+
+.intro{
+	display: flex;
+    justify-content: center;
+}
+.intro p{
+	margin-top: 5px;
+}
+
+.intro a{
+	text-decoration: none;
+	cursor: pointer;
 }

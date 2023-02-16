@@ -13,6 +13,7 @@ import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
 export class WelcomeComponent implements OnInit {
   welcomeForm!: FormGroup;
   msg: any;
+  isLoging: boolean = false;
   constructor(
     private route: Router,
     private data: DataService,
@@ -27,22 +28,27 @@ export class WelcomeComponent implements OnInit {
   }
 
   onWelcome() {
-    this.auth.onSignUp(this.welcomeForm.value).subscribe(
-      (res: any) => {
-        if (res) {
-          this.route.navigate(['notes']);
+    if (this.isLoging) {
+    } else {
+      this.auth.onSignUp(this.welcomeForm.value).subscribe(
+        (res: any) => {
+          if (res) {
+            this.route.navigate(['notes']);
+          }
+        },
+        (error) => {
+          this.msg = error.error.error.message;
+          console.log(error.error.error.message);
+          this.openSnackBar(this.msg, 'X');
         }
-      },
-      (error) => {
-        this.msg=error.error.error.message;
-        console.log(error.error.error.message);
-        this.openSnackBar(this.msg,"X");
-      }
-    );
-    this.welcomeForm.reset();
+      );
+      this.welcomeForm.reset();
+    }
   }
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action);
   }
-
+  onLogin() {
+    this.isLoging = !this.isLoging;
+  }
 }

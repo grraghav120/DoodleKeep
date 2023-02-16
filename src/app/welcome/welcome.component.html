@@ -6,34 +6,38 @@
     </div>
   </header>
 </div>
-<div  class="wels"><h1>Welcome</h1></div>
+<div class="wels"><h1>Welcome</h1></div>
+<div class="intro" *ngIf="!isLoging"><p>Already have an Account? <a (click)="onLogin()">Login Now</a></p></div>
+<div class="intro" *ngIf="!isLoging"><p style="font-size: 15px;">Create an Account</p></div>
+<div class="intro" *ngIf="isLoging"><p>Create an Account? <a (click)="onLogin()">Sign Up</a></p></div>
 <div class="wels">
-    <form class="example-form" [formGroup]="welcomeForm">
-      <div>
-        <mat-form-field class="example-full-width">
-          <mat-label>Email</mat-label>
-          <input
-            type="email"
-            matInput
-            formControlName="emailAdd"
-            placeholder="Ex. pat@example.com"
-          />
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field class="example-full-width">
-          <mat-label>Password</mat-label>
-          <input matInput formControlName="password" type="password" />
-        </mat-form-field>
-      </div>
-      <div>
-        <button mat-raised-button color="primary" (click)="onWelcome()" [disabled]="welcomeForm.invalid">Proceed</button>
-      </div>
-    </form>
+  <form class="example-form" [formGroup]="welcomeForm">
+    <div>
+      <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input
+          type="email"
+          matInput
+          formControlName="emailAdd"
+          placeholder="Ex. pat@example.com"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="example-full-width">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password" />
+      </mat-form-field>
+    </div>
+    <div class="intro">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onWelcome()"
+        [disabled]="welcomeForm.invalid"
+      >
+        {{isLoging?"Login":"SignUp"}}
+      </button>
+    </div>
+  </form>
 </div>
-
-
-
-
-
-
