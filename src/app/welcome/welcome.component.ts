@@ -31,8 +31,7 @@ export class WelcomeComponent implements OnInit {
     if (this.isLoging) {
       this.auth.onLogin(this.welcomeForm.value).subscribe((res:any)=>{
         this.route.navigate(['notes']);
-        console.log(res);
-        this.data.getId(res.idToken);
+        this.data.getId(res.idToken,res.localId);
       },error=>{
         this.msg = error.error.error.message;
           console.log(error.error.error.message);
@@ -44,7 +43,7 @@ export class WelcomeComponent implements OnInit {
         (res: any) => {
           if (res) {
             this.route.navigate(['notes']);
-            this.data.getId(res.idToken);
+            this.data.getId(res.idToken,res.localId);
           }
         },
         (error) => {
