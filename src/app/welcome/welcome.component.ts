@@ -29,8 +29,10 @@ export class WelcomeComponent implements OnInit {
 
   onWelcome() {
     if (this.isLoging) {
-      this.auth.onLogin(this.welcomeForm.value).subscribe(()=>{
+      this.auth.onLogin(this.welcomeForm.value).subscribe((res:any)=>{
         this.route.navigate(['notes']);
+        console.log(res);
+        this.data.getId(res.idToken);
       },error=>{
         this.msg = error.error.error.message;
           console.log(error.error.error.message);
@@ -42,6 +44,7 @@ export class WelcomeComponent implements OnInit {
         (res: any) => {
           if (res) {
             this.route.navigate(['notes']);
+            this.data.getId(res.idToken);
           }
         },
         (error) => {
@@ -52,8 +55,10 @@ export class WelcomeComponent implements OnInit {
       );
     }
   }
+
+
   openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action),{duration:1};
+    this._snackBar.open(message, action),{duration:1*1000};
   }
 
   onSwitch() {

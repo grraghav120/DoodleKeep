@@ -7,14 +7,19 @@ import { Injectable } from '@angular/core';
 export class DataService {
   cards:any=[];
   welcomeId:any;
+  userToken:string='';
   constructor(private http:HttpClient) { }
 
+  getId(id:string){
+    this.userToken=id;
+  }
+
   onSendRequest(values:any){
-    return this.http.post('https://ng-angular-project-1adbc-default-rtdb.firebaseio.com/'+this.welcomeId+'.json',values)
+    return this.http.post('https://ng-angular-project-1adbc-default-rtdb.firebaseio.com/notes.json?auth='+this.userToken,values)
   }
 
   onFetchData(){
-    return this.http.get('https://ng-angular-project-1adbc-default-rtdb.firebaseio.com/notes.json');
+    return this.http.get('https://ng-angular-project-1adbc-default-rtdb.firebaseio.com/notes.json?auth='+this.userToken);
   }
 
   onDeleteTask(id:string){
