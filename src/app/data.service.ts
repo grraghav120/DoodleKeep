@@ -23,7 +23,7 @@ export class DataService {
   }
 
   onDeleteTask(id:string){
-    return this.http.delete('https://ng-angular-project-1adbc-default-rtdb.firebaseio.com/'+this.welcomeId+'/'+id+'.json');
+    return this.http.delete('https://ng-angular-project-1adbc-default-rtdb.firebaseio.com/notes/'+id+'.json?auth='+this.userToken);
   }
 
 }
