@@ -27,15 +27,4 @@ export class AuthService {
     return this.http.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB3mCm-eO4H7rRzLPpAQLZahhZFVsn0p_A',body);
   }
 
-
-
 }
-
-interface apiResponseData
-  {
-    "idToken": string,
-    "email": string,
-    "refreshToken": string,
-    "expiresIn": string,
-    "localId": string
-  }

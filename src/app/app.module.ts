@@ -19,10 +19,11 @@ import { DataService } from './data.service';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AuthService } from './welcome/auth.service';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { AuthGuard } from './welcome/auth.guard';
 // import { MatOptionSelectionChange } from '@angular/material/core';
 const appRoutes: Routes = [
-  { path: 'notes/add', component: AddTaskComponent },
-  { path: 'notes', component: HomeComponent },
+  { path: 'notes/add', component: AddTaskComponent,canActivate:[AuthGuard] },
+  { path: 'notes', component: HomeComponent,canActivate:[AuthGuard] },
   { path: '', component: WelcomeComponent },
   { path: '**', component: WelcomeComponent },
 ];

@@ -18,6 +18,7 @@ export class ShowContentComponent implements OnInit {
     private route: Router,
     private _snackBar: MatSnackBar
   ) {}
+
   ngOnInit(): void {
     this.cardShow = [];
     this.onFetchData();
@@ -66,4 +67,5 @@ export class ShowContentComponent implements OnInit {
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, { duration: 3000 });
   }
+  
 }
