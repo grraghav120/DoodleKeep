@@ -26,6 +26,6 @@ export class AuthGuard implements CanActivate {
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
     if (this.data.userToken !== '') return true;
-    return this.route.createUrlTree(['']);
+    return this.route.createUrlTree(['notes']);
   }
 }

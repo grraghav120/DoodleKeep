@@ -30,6 +30,7 @@ export class WelcomeComponent implements OnInit {
   onWelcome() {
     if (this.isLoging) {
       this.auth.onLogin(this.welcomeForm.value).subscribe((res:any)=>{
+        this.auth.isAccess=true;
         this.route.navigate(['notes']);
         this.data.getId(res.idToken,res.localId);
       },error=>{
@@ -42,6 +43,7 @@ export class WelcomeComponent implements OnInit {
       this.auth.onSignUp(this.welcomeForm.value).subscribe(
         (res: any) => {
           if (res) {
+            this.auth.isAccess=true;
             this.route.navigate(['notes']);
             this.data.getId(res.idToken,res.localId);
           }
