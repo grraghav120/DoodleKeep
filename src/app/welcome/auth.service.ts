@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class AuthService {
+  isAccess:boolean=false;
   constructor(private http: HttpClient) {}
 
   onSignUp(requestBody: any) {
