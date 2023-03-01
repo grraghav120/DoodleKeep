@@ -32,6 +32,7 @@
       </mat-form-field>
       <div>
         <button
+        *ngIf="!isEdit"
           mat-raised-button
           color="primary"
           (click)="onAddingTask()"
@@ -39,6 +40,16 @@
           [disabled]="myForm.invalid"
         >
           Noted
+        </button>
+        <button
+        *ngIf="isEdit"
+          mat-raised-button
+          color="primary"
+          (click)="onEditingTask()"
+          type="submit"
+          [disabled]="myForm.invalid"
+        >
+          Edit Note
         </button>
       </div>
     </form>

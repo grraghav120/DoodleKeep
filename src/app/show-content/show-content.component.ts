@@ -61,6 +61,12 @@ export class ShowContentComponent implements OnInit {
     });
   }
 
+  onEditTask(id:string){
+    this.data.onEditTask(id);
+    this.route.navigate(['notes/edit']);
+  }
+
+
   getColor(btn: string) {
     if (btn === 'High') return 'warn';
     else if (btn === 'Low') return '.';

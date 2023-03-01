@@ -22,6 +22,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AuthGuard } from './welcome/auth.guard';
 // import { MatOptionSelectionChange } from '@angular/material/core';
 const appRoutes: Routes = [
+  { path: 'notes/edit', component: AddTaskComponent,canActivate:[AuthGuard] },
   { path: 'notes/add', component: AddTaskComponent,canActivate:[AuthGuard] },
   { path: 'notes', component: HomeComponent},
   { path: 'welcome', component: WelcomeComponent},

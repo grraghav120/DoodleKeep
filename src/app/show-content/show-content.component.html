@@ -1,6 +1,6 @@
 <div *ngIf="!isAccess" class="noData">
   <h2>Kindly Login/SignUp to add new Notes and Tasks!!</h2>
-  <button class="click" (click)="onNewUser()">Click Here</button>
+  <button class="click" (click)="onNewUser()">Login to Continue</button>
 </div>
 <div *ngIf="isLoading && isAccess" class="sniper">
     <mat-spinner [diameter]="50"></mat-spinner>
@@ -31,7 +31,7 @@
         </button>
         <div>
           <button
-            mat-mini-fab
+          mat-icon-button
             matTooltip="delete"
             color="warn"
             (click)="onDeleteTask(card.id)"
@@ -39,6 +39,9 @@
             class="deletebtn"
           >
             <mat-icon>delete</mat-icon>
+          </button>
+          <button mat-icon-button color="primary" aria-label="Example icon button with a home icon" (click)="onEditTask(card.id)">
+            <mat-icon>edit_note</mat-icon>
           </button>
         </div>
       </mat-card-actions>
