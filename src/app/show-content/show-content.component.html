@@ -1,8 +1,18 @@
 <div *ngIf="isLoading" class="sniper">
-    <mat-spinner [diameter]="50"></mat-spinner>
+  <mat-spinner [diameter]="50"></mat-spinner>
 </div>
 <div *ngIf="cardShow.length === 0 && !isLoading" class="noData">
   <p>No Data Available</p>
+</div>
+<div *ngIf="!isLoading">
+  <mat-form-field appearance="fill">
+    <mat-label>Sort</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let val of priorities" [value]="val">
+        {{ val }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 </div>
 <div *ngIf="!isLoading">
   <div
@@ -19,10 +29,14 @@
       </mat-card-header>
       <mat-card-content class="cardContent">
         <p>{{ card.content }}</p>
-        <hr>
+        <hr />
       </mat-card-content>
       <mat-card-actions>
-        <button mat-stroked-button matTootip="priority" [color]=getColor(card.priority)>
+        <button
+          mat-stroked-button
+          matTootip="priority"
+          [color]="getColor(card.priority)"
+        >
           {{ card.priority }}
         </button>
         <div>

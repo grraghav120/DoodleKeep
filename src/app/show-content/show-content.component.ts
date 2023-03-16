@@ -10,6 +10,7 @@ import { DataService } from '../data.service';
 })
 export class ShowContentComponent implements OnInit {
   cardShow: any = [];
+  priorities:any=['Low','Medium','High'];
   isLoading: boolean = false;
   title: string = '';
   content: string = '';
