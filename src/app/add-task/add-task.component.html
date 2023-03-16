@@ -1,5 +1,6 @@
 <div class="container addT">
   <div>
+    <h1 style="text-align: center;">Add Your Note</h1>
     <form class="example-form" [formGroup]="myForm">
       <mat-form-field class="example-full-width">
         <mat-label>Title</mat-label>
@@ -31,6 +32,7 @@
       </mat-form-field>
       <div>
         <button
+        *ngIf="!isEdit"
           mat-raised-button
           color="primary"
           (click)="onAddingTask()"
@@ -38,6 +40,16 @@
           [disabled]="myForm.invalid"
         >
           Noted
+        </button>
+        <button
+        *ngIf="isEdit"
+          mat-raised-button
+          color="primary"
+          (click)="onEditingTask()"
+          type="submit"
+          [disabled]="myForm.invalid"
+        >
+          Edit Note
         </button>
       </div>
     </form>

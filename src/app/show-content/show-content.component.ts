@@ -12,6 +12,7 @@ export class ShowContentComponent implements OnInit {
   cardShow: any = [];
   priorities:any=['Low','Medium','High'];
   isLoading: boolean = false;
+  isAccess:boolean=true;
   title: string = '';
   content: string = '';
   constructor(
@@ -48,6 +49,8 @@ export class ShowContentComponent implements OnInit {
       },
       (error) => {
         console.log(error);
+        this.isAccess=false;
+        this.openSnackBar(error.error.error, 'X',4000);
       }
     );
   }
@@ -55,9 +58,15 @@ export class ShowContentComponent implements OnInit {
   onDeleteTask(id: string) {
     this.data.onDeleteTask(id).subscribe(() => {
       this.onFetchData();
-      this.openSnackBar('Task Deleted', 'X');
+      this.openSnackBar('Task Deleted', 'X',3000);
     });
   }
+
+  onEditTask(id:string){
+    this.data.onEditTask(id);
+    this.route.navigate(['notes/edit']);
+  }
+
 
   getColor(btn: string) {
     if (btn === 'High') return 'warn';
@@ -65,8 +74,12 @@ export class ShowContentComponent implements OnInit {
     else return 'primary';
   }
 
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, { duration: 3000 });
+  openSnackBar(message: string, action: string,time:number) {
+    this._snackBar.open(message, action, { duration: time });
+  }
+
+  onNewUser(){
+    this.route.navigate(['welcome']);
   }
   
 }

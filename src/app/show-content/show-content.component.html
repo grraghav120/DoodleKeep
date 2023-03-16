@@ -1,8 +1,12 @@
-<div *ngIf="isLoading" class="sniper">
+<div *ngIf="!isAccess" class="noData">
+  <h2>Kindly Login/SignUp to add new Notes and Tasks!!</h2>
+  <button class="click" (click)="onNewUser()">Login to Continue</button>
+</div>
+<div *ngIf="isLoading && isAccess" class="sniper">
   <mat-spinner [diameter]="50"></mat-spinner>
 </div>
-<div *ngIf="cardShow.length === 0 && !isLoading" class="noData">
-  <p>No Data Available</p>
+<div *ngIf="cardShow.length === 0 && !isLoading && isAccess" class="noData">
+  <p>All your Notes are shown here!!</p>
 </div>
 <div *ngIf="!isLoading">
   <mat-form-field appearance="fill">
@@ -14,7 +18,7 @@
     </mat-select>
   </mat-form-field>
 </div>
-<div *ngIf="!isLoading">
+<div *ngIf="!isLoading && isAccess">
   <div
     *ngFor="let card of cardShow"
     class="col-xs-12 col-md-3 col-sm-6"
@@ -41,7 +45,7 @@
         </button>
         <div>
           <button
-            mat-mini-fab
+          mat-icon-button
             matTooltip="delete"
             color="warn"
             (click)="onDeleteTask(card.id)"
@@ -49,6 +53,9 @@
             class="deletebtn"
           >
             <mat-icon>delete</mat-icon>
+          </button>
+          <button mat-icon-button color="primary" aria-label="Example icon button with a home icon" (click)="onEditTask(card.id)">
+            <mat-icon>edit_note</mat-icon>
           </button>
         </div>
       </mat-card-actions>
