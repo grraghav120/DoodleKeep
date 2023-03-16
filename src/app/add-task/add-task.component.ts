@@ -62,8 +62,8 @@ export class AddTaskComponent implements OnInit {
     this.data.onEditingNote(this.myForm.value).subscribe((res)=>{
       if(res){
         console.log(res);
-        this.openSnackBar("Task Edit SuccessFully","X");
         this.route.navigate(['notes']);
+        this.openSnackBar("Task Edit SuccessFully","X");
       }
       else{
         console.log('error');
