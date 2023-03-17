@@ -45,3 +45,14 @@
   border: none;
   background-color: white;
 }
+.process{
+  font-size: 14px;
+  transition: 1s;
+}
+.myfield{
+  display: flex;
+}
+.formInput{
+  width: 200px;
+  height: auto;
+}

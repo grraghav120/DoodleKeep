@@ -11,9 +11,11 @@ import { DataService } from '../data.service';
 export class ShowContentComponent implements OnInit {
   cardShow: any = [];
   isLoading: boolean = false;
+  priorities:any=['None','Low','Medium','High'];
   isAccess: boolean = true;
   title: string = '';
   content: string = '';
+  allData: any=[];
   constructor(
     private data: DataService,
     private route: Router,
@@ -42,6 +44,7 @@ export class ShowContentComponent implements OnInit {
             })
           );
           this.cardShow = this.data.cards;
+          this.allData=this.cardShow;
         } else {
           console.log('Error in Fetch API');
         }
@@ -80,4 +83,18 @@ export class ShowContentComponent implements OnInit {
     this.route.navigate(['welcome']);
   }
 
+   applyFilter(event: Event) {
+    console.log(event);
+    console.log(this.cardShow);
+    
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.cardShow.filter = filterValue.trim().toLowerCase();
+  }
+  
+  onSelect(value:any){
+    if(value!=='None'){
+      this.cardShow=this.allData.filter((x:any)=>x.priority===value);
+    }
+    else this.cardShow=this.allData;
+  }
 }
