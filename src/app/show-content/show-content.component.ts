@@ -11,9 +11,11 @@ import { DataService } from '../data.service';
 export class ShowContentComponent implements OnInit {
   cardShow: any = [];
   isLoading: boolean = false;
-  isAccess:boolean=true;
+  priorities:any=['None','Low','Medium','High'];
+  isAccess: boolean = true;
   title: string = '';
   content: string = '';
+  allData: any=[];
   constructor(
     private data: DataService,
     private route: Router,
@@ -42,14 +44,15 @@ export class ShowContentComponent implements OnInit {
             })
           );
           this.cardShow = this.data.cards;
+          this.allData=this.cardShow;
         } else {
           console.log('Error in Fetch API');
         }
       },
       (error) => {
         console.log(error);
-        this.isAccess=false;
-        this.openSnackBar(error.error.error, 'X',4000);
+        this.isAccess = false;
+        this.openSnackBar(error.error.error, 'X', 2000);
       }
     );
   }
@@ -57,15 +60,14 @@ export class ShowContentComponent implements OnInit {
   onDeleteTask(id: string) {
     this.data.onDeleteTask(id).subscribe(() => {
       this.onFetchData();
-      this.openSnackBar('Task Deleted', 'X',3000);
+      this.openSnackBar('Task Deleted', 'X', 3000);
     });
   }
 
-  onEditTask(id:string){
+  onEditTask(id: string) {
     this.data.onEditTask(id);
     this.route.navigate(['notes/edit']);
   }
-
 
   getColor(btn: string) {
     if (btn === 'High') return 'warn';
@@ -73,12 +75,26 @@ export class ShowContentComponent implements OnInit {
     else return 'primary';
   }
 
-  openSnackBar(message: string, action: string,time:number) {
+  openSnackBar(message: string, action: string, time: number) {
     this._snackBar.open(message, action, { duration: time });
   }
 
-  onNewUser(){
+  onNewUser() {
     this.route.navigate(['welcome']);
   }
+
+   applyFilter(event: Event) {
+    console.log(event);
+    console.log(this.cardShow);
+    
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.cardShow.filter = filterValue.trim().toLowerCase();
+  }
   
+  onSelect(value:any){
+    if(value!=='None'){
+      this.cardShow=this.allData.filter((x:any)=>x.priority===value);
+    }
+    else this.cardShow=this.allData;
+  }
 }
