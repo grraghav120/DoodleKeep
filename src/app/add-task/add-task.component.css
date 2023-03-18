@@ -16,4 +16,10 @@
   display: flex;
   justify-content: center;
 }
-
+.error{
+  font-size: 12px;
+  color: red;
+  margin-top: -15px;
+  padding-left: 2px;
+  transition: .5s;
+}
