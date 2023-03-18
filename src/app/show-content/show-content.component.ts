@@ -11,11 +11,11 @@ import { DataService } from '../data.service';
 export class ShowContentComponent implements OnInit {
   cardShow: any = [];
   isLoading: boolean = false;
-  priorities:any=['None','Low','Medium','High'];
+  priorities: any = ['None', 'Low', 'Medium', 'High'];
   isAccess: boolean = true;
   title: string = '';
   content: string = '';
-  allData: any=[];
+  allData: any = [];
   constructor(
     private data: DataService,
     private route: Router,
@@ -44,7 +44,7 @@ export class ShowContentComponent implements OnInit {
             })
           );
           this.cardShow = this.data.cards;
-          this.allData=this.cardShow;
+          this.allData = this.cardShow;
         } else {
           console.log('Error in Fetch API');
         }
@@ -83,18 +83,23 @@ export class ShowContentComponent implements OnInit {
     this.route.navigate(['welcome']);
   }
 
-   applyFilter(event: Event) {
+  applyFilter(event: Event) {
     console.log(event);
-    console.log(this.cardShow);
-    
     const filterValue = (event.target as HTMLInputElement).value;
-    this.cardShow.filter = filterValue.trim().toLowerCase();
+    console.log(filterValue);
+    this.cardShow = this.allData.filter((x: any) =>
+      this.search(x, filterValue)
+    );
   }
-  
-  onSelect(value:any){
-    if(value!=='None'){
-      this.cardShow=this.allData.filter((x:any)=>x.priority===value);
-    }
-    else this.cardShow=this.allData;
+
+  search(x: any, filterValue: any) {
+    if (x.title.toLowerCase().includes(filterValue)) return x;
+    if (x.content.toLowerCase().includes(filterValue)) return x;
+  }
+
+  onSelect(value: any) {
+    if (value !== 'None') {
+      this.cardShow = this.allData.filter((x: any) => x.priority === value);
+    } else this.cardShow = this.allData;
   }
 }
