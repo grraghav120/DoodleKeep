@@ -11,17 +11,15 @@
             placeholder="Enter the Title"
             formControlName="title"
           />
+          <mat-hint style="color: red; margin-left: -10px;"
+            *ngIf="
+              myForm.get('title')?.errors &&
+              myForm.get('title')?.hasError('required') &&
+              myForm.get('title')?.touched
+            "
+            >Title is required</mat-hint
+          >
         </mat-form-field>
-        <div class="error">
-          <span
-          *ngIf="
-            myForm.get('title')?.errors &&
-            myForm.get('title')?.hasError('required') &&
-            myForm.get('title')?.touched
-          "
-          >Title is required</span>
-        </div>
-
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>Content</mat-label>
           <input
@@ -32,16 +30,16 @@
             formControlName="content"
           />
           <mat-hint align="end">{{ message.value.length }} / 230</mat-hint>
+          <mat-hint
+            style="color: red; margin-left: -10px"
+            *ngIf="
+              myForm.get('content')?.errors &&
+              myForm.get('content')?.hasError('required') &&
+              myForm.get('content')?.touched
+            "
+            >Content is required</mat-hint
+          >
         </mat-form-field>
-        <div class="error">
-          <span
-          *ngIf="
-            myForm.get('content')?.errors &&
-            myForm.get('content')?.hasError('required') &&
-            myForm.get('content')?.touched
-          "
-          >Content is required</span>
-        </div>
         <mat-form-field appearance="outline">
           <mat-label>Priority</mat-label>
           <mat-select formControlName="priority">
@@ -49,6 +47,15 @@
             <mat-option value="Medium">Medium</mat-option>
             <mat-option value="Low">Low</mat-option>
           </mat-select>
+          <mat-hint
+            style="color: red; margin-left: -10px"
+            *ngIf="
+              myForm.get('priority')?.errors &&
+              myForm.get('priority')?.hasError('required') &&
+              myForm.get('priority')?.touched
+            "
+            >Assign a Priority to Task</mat-hint
+          >
         </mat-form-field>
         <div>
           <button
