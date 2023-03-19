@@ -1,12 +1,18 @@
 <app-header></app-header>
 <div class="wels"><h1>Welcome</h1></div>
-<div class="intro" *ngIf="!isLoging"><p>Already have an Account? <a (click)="onSwitch()">Login Now</a></p></div>
-<div class="intro" *ngIf="!isLoging"><p style="font-size: 15px;">Create an Account</p></div>
-<div class="intro" *ngIf="isLoging"><p>New User? <a (click)="onSwitch()">Sign Up</a></p></div>
+<div class="intro" *ngIf="!isLoging">
+  <p>Already have an Account? <a (click)="onSwitch()">Login Now</a></p>
+</div>
+<div class="intro" *ngIf="!isLoging">
+  <p style="font-size: 15px">Create an Account</p>
+</div>
+<div class="intro" *ngIf="isLoging">
+  <p>New User? <a (click)="onSwitch()">Sign Up</a></p>
+</div>
 <div class="wels">
   <form class="example-form" [formGroup]="welcomeForm">
     <div>
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Email</mat-label>
         <input
           type="email"
@@ -15,12 +21,39 @@
           placeholder="Ex. abc@example.com"
         />
       </mat-form-field>
+      <div class="error">
+        <span
+          *ngIf="
+            welcomeForm.get('emailAdd')?.errors &&
+            welcomeForm.get('emailAdd')?.hasError('required') &&
+            welcomeForm.get('emailAdd')?.touched
+          "
+          >Email is required</span
+        >
+        <span
+          *ngIf="
+            welcomeForm.get('emailAdd')?.errors &&
+            welcomeForm.get('emailAdd')?.hasError('email')
+          "
+          >Email is invalid</span
+        >
+      </div>
     </div>
     <div>
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Password</mat-label>
         <input matInput formControlName="password" type="password" />
       </mat-form-field>
+      <div class="error">
+        <span
+          *ngIf="
+            welcomeForm.get('password')?.errors &&
+            welcomeForm.get('password')?.hasError('required') &&
+            welcomeForm.get('password')?.touched
+          "
+          >Password is required</span
+        >
+      </div>
     </div>
     <div class="intro">
       <button
@@ -29,7 +62,7 @@
         (click)="onWelcome()"
         [disabled]="welcomeForm.invalid"
       >
-        {{isLoging?"Login":"SignUp"}}
+        {{ isLoging ? "Login" : "SignUp" }}
       </button>
     </div>
   </form>

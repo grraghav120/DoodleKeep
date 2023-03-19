@@ -85,7 +85,8 @@ export class ShowContentComponent implements OnInit {
 
   applyFilter(event: Event) {
     console.log(event);
-    const filterValue = (event.target as HTMLInputElement).value;
+    var filterValue = (event.target as HTMLInputElement).value;
+    filterValue=filterValue.trim().toLocaleLowerCase();
     console.log(filterValue);
     this.cardShow = this.allData.filter((x: any) =>
       this.search(x, filterValue)
