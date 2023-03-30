@@ -11,6 +11,7 @@
             type="text"
             placeholder="Enter the Title"
             formControlName="title"
+            autocomplete="off"
           />
           <mat-hint style="color: red; margin-left: -10px;"
             *ngIf="
@@ -29,6 +30,7 @@
             maxlength="230"
             placeholder="Enter the Content"
             formControlName="content"
+            autocomplete="off"
           />
           <mat-hint align="end">{{ message.value.length }} / 230</mat-hint>
           <mat-hint

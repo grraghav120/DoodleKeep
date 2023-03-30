@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { AlertComponent } from '../alert/alert.component';
 import { DataService } from '../data.service';
 
 @Component({
@@ -12,7 +14,6 @@ export class ShowContentComponent implements OnInit {
   cardShow: any = [];
   priorities:any=['Low','Medium','High'];
   isLoading: boolean = false;
-  // priorities: any = ['None', 'Low', 'Medium', 'High'];
   isAccess: boolean = true;
   title: string = '';
   content: string = '';
@@ -20,7 +21,8 @@ export class ShowContentComponent implements OnInit {
   constructor(
     private data: DataService,
     private route: Router,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -58,11 +60,19 @@ export class ShowContentComponent implements OnInit {
     );
   }
 
+
   onDeleteTask(id: string) {
-    this.data.onDeleteTask(id).subscribe(() => {
-      this.onFetchData();
-      this.openSnackBar('Task Deleted', 'X', 3000);
+    const dialogRef =this.dialog.open(AlertComponent, {});
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      if(result===true){
+        this.data.onDeleteTask(id).subscribe(() => {
+          this.onFetchData();
+          this.openSnackBar('Task Deleted', 'X', 3000);
+        });
+      }
     });
+    
   }
 
   onEditTask(id: string) {
