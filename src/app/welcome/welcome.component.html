@@ -1,18 +1,13 @@
 <app-header></app-header>
-<div class="wels"><h1>Welcome</h1></div>
+<div class="wels" *ngIf="!isLoging"><h1>Sign Up</h1></div>
+<div class="wels" *ngIf="isLoging"><h1>Login</h1></div>
 <div class="intro" *ngIf="!isLoging">
-  <p>Already have an Account? <a (click)="onSwitch()">Login Now</a></p>
-</div>
-<div class="intro" *ngIf="!isLoging">
-  <p style="font-size: 15px">Create an Account</p>
-</div>
-<div class="intro" *ngIf="isLoging">
-  <p>New User? <a (click)="onSwitch()">Sign Up</a></p>
+  <p style="font-size: 18px">Create an Account</p>
 </div>
 <div class="wels">
   <form class="example-form" [formGroup]="welcomeForm">
     <div>
-      <mat-form-field class="example-full-width" appearance="outline">
+      <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
         <input
           type="email"
@@ -64,6 +59,12 @@
       >
         {{ isLoging ? "Login" : "SignUp" }}
       </button>
+    </div>
+    <div class="intro" *ngIf="!isLoging">
+      <p>Already have an Account? <a (click)="onSwitch()">Login Now</a></p>
+    </div>
+    <div class="intro" *ngIf="isLoging">
+      <p>New User? <a (click)="onSwitch()">Sign Up</a></p>
     </div>
   </form>
 </div>

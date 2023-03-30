@@ -1,6 +1,7 @@
 <div class="container addT">
   <div>
-    <h1 style="text-align: center">Add Your Note</h1>
+    <div *ngIf="!isEdit"><h1 style="text-align: center">Add Your Note</h1></div>
+    <div *ngIf="isEdit"><h1 style="text-align: center">Edit Your Note</h1></div>
     <form class="example-form" [formGroup]="myForm">
       <div>
         <mat-form-field class="example-full-width" appearance="outline">
