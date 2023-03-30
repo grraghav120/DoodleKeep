@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router, Routes } from '@angular/router';
+import { ActivatedRoute, Params, Router, Routes } from '@angular/router';
 import { DataService } from '../data.service';
 import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
 @Component({
@@ -16,7 +16,8 @@ export class AddTaskComponent implements OnInit {
     private route: Router,
     private http: HttpClient,
     private data: DataService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    public actiRoute:ActivatedRoute,
   ) {
     if(this.data.isEdit){
       this.isEdit=true;
@@ -59,14 +60,16 @@ export class AddTaskComponent implements OnInit {
   }
 
   onEditingTask(){
+
     this.data.onEditingNote(this.myForm.value).subscribe((res)=>{
       if(res){
         console.log(res);
         this.route.navigate(['notes']);
-        this.openSnackBar("Task Edit SuccessFully","X");
+        this.openSnackBar("Task Edit Successfully","X");
       }
       else{
-        console.log('error');
+        this.openSnackBar(`Something Went Wrong! please try
+        again`,"X");
       }
     })
     this.data.isEdit=false;

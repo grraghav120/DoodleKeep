@@ -13,7 +13,7 @@
     justify-content: center;
 }
 .intro p{
-	margin-top: 5px;
+	margin-top: 10px;
 }
 
 .intro a{
@@ -25,5 +25,7 @@
     color: red;
     margin-top: -15px;
     padding-left: 2px;
-    transition: .5s;
+}
+.mat-mdc-form-field{
+    width: 100% !important;
 }
