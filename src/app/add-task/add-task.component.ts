@@ -65,7 +65,7 @@ export class AddTaskComponent implements OnInit {
       if(res){
         console.log(res);
         this.route.navigate(['notes']);
-        this.openSnackBar("Task Edit SuccessFully","X");
+        this.openSnackBar("Task Edit Successfully","X");
       }
       else{
         this.openSnackBar(`Something Went Wrong! please try
