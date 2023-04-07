@@ -13,6 +13,7 @@ import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
 export class WelcomeComponent implements OnInit {
   welcomeForm!: FormGroup;
   msg: any;
+  hide:boolean=true;
   isLoging: boolean = false;
   constructor(
     private route: Router,
