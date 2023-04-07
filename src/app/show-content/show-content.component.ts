@@ -18,6 +18,7 @@ export class ShowContentComponent implements OnInit {
   title: string = '';
   content: string = '';
   allData: any = [];
+  isUndo: boolean=false;
   constructor(
     private data: DataService,
     private route: Router,
@@ -64,12 +65,12 @@ export class ShowContentComponent implements OnInit {
   onDeleteTask(id: string) {
     const dialogRef =this.dialog.open(AlertComponent, {});
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      // console.log(result);
       if(result===true){
-        this.data.onDeleteTask(id).subscribe(() => {
-          this.onFetchData();
-          this.openSnackBar('Task Deleted', 'X', 3000);
-        });
+        const index=this.cardShow.findIndex((x:any)=> x.id===id);
+        this.cardShow.splice(index,1);
+        console.log(this.cardShow);
+        this.openSnackBarDelete('Task Deleted', 'UNDO', 4000, id);
       }
     });
     
@@ -90,15 +91,32 @@ export class ShowContentComponent implements OnInit {
     this._snackBar.open(message, action, { duration: time });
   }
 
+  openSnackBarDelete(message: string, action: string, time: number,id:string) {
+    let snackRef=this._snackBar.open(message, action, { duration: time });
+    snackRef.onAction().subscribe(()=>{
+      this.isUndo=true;
+      this.onFetchData();
+    });
+
+    snackRef.afterDismissed().subscribe(()=>{
+      if(!this.isUndo){
+        this.data.onDeleteTask(id).subscribe(() => {
+          console.log("delete item successfully");
+        });
+      }
+    })
+
+  }
+
   onNewUser() {
     this.route.navigate(['welcome']);
   }
 
   applyFilter(event: Event) {
-    console.log(event);
+    // console.log(event);
     var filterValue = (event.target as HTMLInputElement).value;
     filterValue=filterValue.trim().toLocaleLowerCase();
-    console.log(filterValue);
+    // console.log(filterValue);
     this.cardShow = this.allData.filter((x: any) =>
       this.search(x, filterValue)
     );
