@@ -24,6 +24,7 @@ import { HeaderComponent } from './header/header.component';
 import { AlertComponent } from './alert/alert.component';
 import {MatDialogModule} from '@angular/material/dialog';
 // import { MatOptionSelectionChange } from '@angular/material/core';
+import {MatTooltipModule} from '@angular/material/tooltip'
 const appRoutes: Routes = [
   { path: 'notes/edit', component: AddTaskComponent,canActivate:[AuthGuard]},
   { path: 'notes/add', component: AddTaskComponent,canActivate:[AuthGuard]},
@@ -51,6 +52,7 @@ const appRoutes: Routes = [
     MatProgressSpinnerModule,
     MatSelectModule,
     MatCardModule,
+    MatTooltipModule,
     MatIconModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
