@@ -39,9 +39,13 @@
     justify-content: center;
     margin-top: 150px;
 }
+.sniper2{
+  display: flex;
+    justify-content: center;
+}
 .click{
   text-decoration: none;
-  cursor: pointer;
+  cursor:default;
   border: none;
   background-color: white;
 }

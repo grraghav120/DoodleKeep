@@ -36,7 +36,7 @@ export class WelcomeComponent implements OnInit {
         this.data.getId(res.idToken,res.localId);
       },error=>{
         this.msg = error.error.error.message;
-          console.log(error.error.error.message);
+          // console.log(error.error.error.message);
           this.openSnackBar(this.msg, 'X');
       }
       )
@@ -51,7 +51,7 @@ export class WelcomeComponent implements OnInit {
         },
         (error) => {
           this.msg = error.error.error.message;
-          console.log(error.error.error.message);
+          // console.log(error.error.error.message);
           this.openSnackBar(this.msg, 'X');
         }
       );
